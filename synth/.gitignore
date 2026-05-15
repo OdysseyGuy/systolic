@@ -1,0 +1,2 @@
+# ignore the synthesized netlist
+*.v
