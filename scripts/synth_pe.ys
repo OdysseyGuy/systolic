@@ -1,0 +1,34 @@
+# Read RTL
+read_verilog rtl/pe/operand_gating.v
+read_verilog rtl/pe/processing_element.v
+
+# Top module
+hierarchy -top processing_element
+
+# Generic synthesis
+proc
+opt
+fsm
+opt
+memory
+opt
+
+# Technology mapping
+techmap
+opt
+
+# Map flip-flops
+dfflibmap -liberty lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# Map logic cells
+abc -liberty lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# Cleanup
+clean
+
+# Reports
+stat
+check
+
+# Write synthesized netlist
+write_verilog -noattr synth/processing_element_synth.v
